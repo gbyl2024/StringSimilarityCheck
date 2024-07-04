@@ -17,10 +17,10 @@ public:
 	int getLengthScore(int Gap, int BLength, int ALength)
 	{
 		if (Gap > 0) {
-			return 60 - 60 * Gap / BLength;
+			return MAX_LENGTH_SCORE - MAX_LENGTH_SCORE * Gap / BLength;
 		}
 
-		return 60 + 60 * Gap / ALength;
+		return MAX_LENGTH_SCORE + MAX_LENGTH_SCORE * Gap / ALength;
 	}
 
 	bool isDoubleGapLength(int ALength, int BLength)
@@ -29,5 +29,6 @@ public:
 		if (BLength >= 2 * ALength)return true;
 		return false;
 	}
-
+private:
+	const int MAX_LENGTH_SCORE{ 60 };
 };
