@@ -4,29 +4,34 @@ using namespace std;
 
 class StringSimilarityChecker {
 public:
-	int getSimilarityLengthScore(string A, string B) { 
-		int ALength = A.length();
-		int BLength = B.length();
-		int Gap = ALength - BLength;
+	int getSimilarityLengthScore(string input1, string input2) { 
+		int ALength = getLongLength(input1, input2);
+		int BLength = getShortLength(input1, input2);
 
 		if (isDoubleGapLength(ALength, BLength)) return 0;
 
-		return getLengthScore(Gap, BLength, ALength);
+		return getLengthScore(ALength, BLength);
 	}
 
-	int getLengthScore(int Gap, int BLength, int ALength)
-	{
-		if (Gap > 0) {
-			return MAX_LENGTH_SCORE - MAX_LENGTH_SCORE * Gap / BLength;
-		}
+	int getLongLength(string input1, string input2) {
+		if (input1.length() > input2.length())return input1.length();
+		return input2.length();
+	}
 
-		return MAX_LENGTH_SCORE + MAX_LENGTH_SCORE * Gap / ALength;
+	int getShortLength(string input1, string input2) {
+		if (input1.length() > input2.length())return input2.length();
+		return input1.length();
+	}
+
+	int getLengthScore(int ALength, int BLength)
+	{
+		int Gap = ALength - BLength;
+		return MAX_LENGTH_SCORE - MAX_LENGTH_SCORE * Gap / BLength;
 	}
 
 	bool isDoubleGapLength(int ALength, int BLength)
 	{
 		if (ALength >= 2 * BLength)return true;
-		if (BLength >= 2 * ALength)return true;
 		return false;
 	}
 private:
