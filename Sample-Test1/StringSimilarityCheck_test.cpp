@@ -3,7 +3,7 @@
 
 class StringSimilarityCheckFixture : public testing::Test {
 public:
-	StringSimilarityCheck similarityChecker;
+	StringSimilarityChecker similarityChecker;
 };
 
 TEST_F(StringSimilarityCheckFixture, TestScoreWhenTwoStringSizeSame) {
